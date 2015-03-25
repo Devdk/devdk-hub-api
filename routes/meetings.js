@@ -1,9 +1,17 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET meetings listing. */
+var MongoClient = require('mongodb').MongoClient;
+
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+    MongoClient.connect("mongodb://localhost:27017/hub", function(err, db) {
+        if(!err) {
+            var meetings = db.collection('meetings');
+            meetings.find().toArray(function (err, items) {
+              res.send(items);
+            });
+        }
+    });
 });
 
 module.exports = router;

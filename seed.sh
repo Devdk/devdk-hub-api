@@ -1,1 +1,1 @@
-mongoimport -d test -c example datadumb/meetings.json
+mongoimport -d hub -c meetings datadumb/meetings.json
