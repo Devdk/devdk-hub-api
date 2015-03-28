@@ -59,14 +59,14 @@ function convertData(data, callback) {
 		return {
 			imported_id: meeting.Id,
 			title: meeting.Title,
-			starts_at: meeting.StartsAt,
-			created_at: meeting.CreatedAt,
+			starts_at: Date.parse(meeting.StartsAt),
+			created_at: Date.parse(meeting.CreatedAt),
 			description: meeting.Description,
 			url: meeting.Url,
 			tags: meeting.Tags.map(function(tag) { return tag.Name; }),
 			organizers: meeting.Organizers.map(function(organizer) { return organizer.Name; }),
 			city: meeting.City != null ? meeting.City.Name : null,
-			deleted_at: meeting.DeletedAt
+			deleted_at: meeting.DeletedAt ? Date.parse(meeting.DeletedAt) : null
 		}
 	});
 
