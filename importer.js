@@ -78,7 +78,7 @@ function convertData(data, callback) {
 function importIntoMongo(meetings, callback) {
 	console.log("Inserting into MongoDB");
 
-	MongoClient.connect(mongodbUrl, function(err, db) {
+	MongoClient.connect(config.mongodbUrl, function(err, db) {
 		if(err) throw err;
 		var collection = db.collection("meetings");
 		collection.remove();
