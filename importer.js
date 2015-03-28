@@ -2,7 +2,7 @@ var async = require('async'),
 	fs 	  = require('fs'),
 	readline = require('readline');
 
-var config = require('config');
+var config = require('./config');
 
 var MongoClient = require('mongodb').MongoClient;
 
