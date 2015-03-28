@@ -3,9 +3,11 @@ var router = express.Router();
 
 var MongoClient = require('mongodb').MongoClient;
 
+var config = require('../config.js');
+
 router.get('/', parseMeetingFilters, function(req, res, next) {
 
-    MongoClient.connect("mongodb://localhost:27017/hub", function(err, db) {
+    MongoClient.connect(config.mongodbUrl, function(err, db) {
         if(!err) {
     		query = {}
     		if(req.filters.after) {

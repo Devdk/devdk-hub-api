@@ -2,6 +2,8 @@ var async = require('async'),
 	fs 	  = require('fs'),
 	readline = require('readline');
 
+var config = require('config');
+
 var MongoClient = require('mongodb').MongoClient;
 
 var inputFileName = 'datadumb/meetings.json';
@@ -76,7 +78,7 @@ function convertData(data, callback) {
 function importIntoMongo(meetings, callback) {
 	console.log("Inserting into MongoDB");
 
-	MongoClient.connect("mongodb://localhost:27017/hub", function(err, db) {
+	MongoClient.connect(mongodbUrl, function(err, db) {
 		if(err) throw err;
 		var collection = db.collection("meetings");
 		collection.remove();
