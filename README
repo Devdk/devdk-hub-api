@@ -1,1 +1,11 @@
-API
+Needs node & mongodb
+
+To install:
+	npm install
+	mongod
+	bash seed.sh
+
+To run:
+	npm install
+	mongod
+	node bin/www
