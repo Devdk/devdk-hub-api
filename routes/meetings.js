@@ -18,6 +18,10 @@ router.get('/', parseMeetingFilters, function(req, res, next) {
     			query.starts_at = query.starts_at || {};
     			query.starts_at["$lte"] = Date.parse(req.filters.before);
     		}
+    		if(req.filters.tags) {
+    			query.tags = query.tags || {};
+    			query.tags['$in'] = req.filters.tags;
+    		}
 
             var meetings = db.collection('meetings');
             meetings.find(query).toArray(function (err, items) {
@@ -31,7 +35,8 @@ function parseMeetingFilters(req, res, next) {
 	
 	req.filters = {
 		after: req.query.after,
-		before: req.query.before
+		before: req.query.before,
+		tags: req.query.tags ? req.query.tags.split(',') : null
 	};
 
 	next();
