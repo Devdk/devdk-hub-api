@@ -9,3 +9,8 @@ To run:
 	npm install
 	mongod
 	node bin/www
+
+API USAGE:
+
+/meetings - returns all meetings
+/meetings?after=DATE - returns meetings that starts at that date or after

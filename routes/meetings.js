@@ -9,7 +9,7 @@ router.get('/', parseMeetingFilters, function(req, res, next) {
         if(!err) {
     		query = {}
     		if(req.filters.after) {
-    			"starts_at" : {"$gte": Date.parse(req.filters.after)}
+    			query.starts_at = {"$gte": Date.parse(req.filters.after)}
     		}
 
             var meetings = db.collection('meetings');
@@ -21,10 +21,12 @@ router.get('/', parseMeetingFilters, function(req, res, next) {
 });
 
 function parseMeetingFilters(req, res, next) {
-
-	req.filtes = {
+	
+	req.filters = {
 		after: req.query.after
 	};
+
+	next();
 
 }
 
