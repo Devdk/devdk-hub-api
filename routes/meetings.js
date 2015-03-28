@@ -9,7 +9,12 @@ router.get('/', parseMeetingFilters, function(req, res, next) {
         if(!err) {
     		query = {}
     		if(req.filters.after) {
-    			query.starts_at = {"$gte": Date.parse(req.filters.after)}
+    			query.starts_at = query.starts_at || {};
+    			query.starts_at["$gte"] = Date.parse(req.filters.after);
+    		}
+    		if(req.filters.before) {
+    			query.starts_at = query.starts_at || {};
+    			query.starts_at["$lte"] = Date.parse(req.filters.before);
     		}
 
             var meetings = db.collection('meetings');
@@ -23,7 +28,8 @@ router.get('/', parseMeetingFilters, function(req, res, next) {
 function parseMeetingFilters(req, res, next) {
 	
 	req.filters = {
-		after: req.query.after
+		after: req.query.after,
+		before: req.query.before
 	};
 
 	next();
