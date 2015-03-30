@@ -13,4 +13,5 @@ To run:
 To test:
 	npm install
 	npm install mocha -g
+	mongod
 	mocha test/**
