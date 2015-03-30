@@ -57,7 +57,6 @@ function convertData(data, callback) {
 	console.log("Converting data");
 
 	var records = data.map(function(meeting) {
-		/*{"Id":27,"Title":"Umbraco 5 med Niels Hartvig","StartsAt":"2012-01-17T18:00:00+01:00","CreatedAt":"2012-01-16T10:00:31.881+01:00","Description":"Niels Hartvig fortæller om den seneste version af Umbraco.","Url":"http://www.eventbrite.com/event/2707553365/eorg","CostsMoney":false,"Tags":[],"Organizers":[{"Name":"CNUG"}],"City":{"Name":"København"},"DeletedAt":null,"IsNotDeleted":true}*/
 		return {
 			imported_id: meeting.Id,
 			title: meeting.Title,
