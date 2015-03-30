@@ -5,25 +5,9 @@ var MongoClient = require('mongodb').MongoClient;
 
 var config = require('../config.js');
 
-router.get('/', parseMeetingFilters, function(req, res, next) {
-
-    query = {}
-    
-    if(req.filters.after) {
-        addFunctionFilter(query, "starts_at", "$gte", Date.parse(req.filters.after));
-    }
-    if(req.filters.before) {
-        addFunctionFilter(query, "starts_at", "$lte", Date.parse(req.filters.before));
-    }
-    if(req.filters.tags) {
-        addFunctionFilter(query, "tags", "$in", req.filters.tags);
-    }
-    if(req.filters.organizers) {
-        addFunctionFilter(query, "organizers", "$in", req.filters.organizers);
-    }
-    if(req.filters.cities) {
-        addFunctionFilter(query, "city", "$in", req.filters.cities);
-    }
+router.get('/', function(req, res, next) {
+    var filter = buildMeetingFilterFromQuery(req.query);
+    var query = buildMeetingQuery(filter);
 
     MongoClient.connect(config.mongodbUrl, function(err, db) {
         if(!err) {
@@ -40,18 +24,37 @@ function addFunctionFilter(queryObject, attribute, functionName, value) {
     queryObject[attribute][functionName] = value;
 }
 
-function parseMeetingFilters(req, res, next) {
-	
-	req.filters = {
-		after: req.query.after,
-		before: req.query.before,
-		tags: req.query.tags ? req.query.tags.split(',') : null,
-		organizers: req.query.organizers ? req.query.organizers.split(',') : null,
-		cities: req.query.cities ? req.query.cities.split(',') : null
-	};
+function buildMeetingFilterFromQuery(query) {
+    var filters = {
+        after: query.after ? Date.parse(query.after) : null,
+        before: query.before ? Date.parse(query.before) : null,
+        tags: query.tags ? query.tags.split(',') : null,
+        organizers: query.organizers ? query.organizers.split(',') : null,
+        cities: query.cities ? query.cities.split(',') : null
+    };
+    return filters;
+}
 
-	next();
+function buildMeetingQuery(filter) {
+    query = {}
+    
+    if(filter.after) {
+        addFunctionFilter(query, "starts_at", "$gte", filter.after);
+    }
+    if(filter.before) {
+        addFunctionFilter(query, "starts_at", "$lte", filter.before);
+    }
+    if(filter.tags) {
+        addFunctionFilter(query, "tags", "$in", req.filters.tags);
+    }
+    if(filter.organizers) {
+        addFunctionFilter(query, "organizers", "$in", req.filters.organizers);
+    }
+    if(filter.cities) {
+        addFunctionFilter(query, "city", "$in", req.filters.cities);
+    }
 
+    return query;
 }
 
 module.exports = router;
