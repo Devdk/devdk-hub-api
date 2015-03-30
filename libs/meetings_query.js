@@ -15,7 +15,7 @@ function parseQueryString(query) {
     return filters;
 }
 
-function buildMeetingQuery(filter) {
+function buildMongoQuery(filter) {
     query = {}
     
     if(filter.after) {
@@ -37,4 +37,7 @@ function buildMeetingQuery(filter) {
     return query;
 }
 
-module.exports.parseQueryString = parseQueryString;
+module.exports = {
+    parseQueryString: parseQueryString,
+    buildMongoQuery: buildMongoQuery
+};
