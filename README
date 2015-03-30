@@ -9,3 +9,8 @@ To run:
 	npm install
 	mongod
 	node bin/www
+
+To test:
+	npm install
+	npm install mocha -g
+	mocha test/**
