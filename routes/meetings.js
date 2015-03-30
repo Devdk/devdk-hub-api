@@ -7,26 +7,26 @@ var config = require('../config.js');
 
 router.get('/', parseMeetingFilters, function(req, res, next) {
 
+    query = {}
+    
+    if(req.filters.after) {
+        addFunctionFilter(query, "starts_at", "$gte", Date.parse(req.filters.after));
+    }
+    if(req.filters.before) {
+        addFunctionFilter(query, "starts_at", "$lte", Date.parse(req.filters.before));
+    }
+    if(req.filters.tags) {
+        addFunctionFilter(query, "tags", "$in", req.filters.tags);
+    }
+    if(req.filters.organizers) {
+        addFunctionFilter(query, "organizers", "$in", req.filters.organizers);
+    }
+    if(req.filters.cities) {
+        addFunctionFilter(query, "city", "$in", req.filters.cities);
+    }
+
     MongoClient.connect(config.mongodbUrl, function(err, db) {
         if(!err) {
-    		query = {}
-            
-    		if(req.filters.after) {
-                addFunctionFilter(query, "starts_at", "$gte", Date.parse(req.filters.after));
-    		}
-    		if(req.filters.before) {
-                addFunctionFilter(query, "starts_at", "$lte", Date.parse(req.filters.before));
-    		}
-    		if(req.filters.tags) {
-                addFunctionFilter(query, "tags", "$in", req.filters.tags);
-    		}
-    		if(req.filters.organizers) {
-                addFunctionFilter(query, "organizers", "$in", req.filters.organizers);
-    		}
-    		if(req.filters.cities) {
-                addFunctionFilter(query, "city", "$in", req.filters.cities);
-    		}
-
             var meetings = db.collection('meetings');
             meetings.find(query).toArray(function (err, items) {
               res.send(items);
