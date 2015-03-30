@@ -10,25 +10,21 @@ router.get('/', parseMeetingFilters, function(req, res, next) {
     MongoClient.connect(config.mongodbUrl, function(err, db) {
         if(!err) {
     		query = {}
+            
     		if(req.filters.after) {
-    			query.starts_at = query.starts_at || {};
-    			query.starts_at["$gte"] = Date.parse(req.filters.after);
+                addFunctionFilter(query, "starts_at", "$gte", Date.parse(req.filters.after));
     		}
     		if(req.filters.before) {
-    			query.starts_at = query.starts_at || {};
-    			query.starts_at["$lte"] = Date.parse(req.filters.before);
+                addFunctionFilter(query, "starts_at", "$lte", Date.parse(req.filters.before));
     		}
     		if(req.filters.tags) {
-    			query.tags = query.tags || {};
-    			query.tags['$in'] = req.filters.tags;
+                addFunctionFilter(query, "tags", "$in", req.filters.tags);
     		}
     		if(req.filters.organizers) {
-    			query.organizers = query.organizers || {};
-    			query.organizers['$in'] = req.filters.organizers;
+                addFunctionFilter(query, "organizers", "$in", req.filters.organizers);
     		}
     		if(req.filters.cities) {
-    			query.city = query.city || {};
-    			query.city['$in'] = req.filters.cities;
+                addFunctionFilter(query, "city", "$in", req.filters.cities);
     		}
 
             var meetings = db.collection('meetings');
@@ -38,6 +34,11 @@ router.get('/', parseMeetingFilters, function(req, res, next) {
         }
     });
 });
+
+function addFunctionFilter(queryObject, attribute, functionName, value) {
+    queryObject[attribute] = queryObject[attribute] || {};
+    queryObject[attribute][functionName] = value;
+}
 
 function parseMeetingFilters(req, res, next) {
 	
