@@ -16,5 +16,8 @@
     "mongodb": "^2.0.25",
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0"
+  },
+  "devDependencies": {
+    "supertest": "^0.15.0"
   }
 }
