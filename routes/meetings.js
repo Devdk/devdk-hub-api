@@ -2,8 +2,9 @@ var express = require('express');
 var meeting_query = require('../libs/meetings_query.js');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
-
+var JsonValidator = require('jsonschema').Validator;
 var config = require('../config.js');
+var jsonValidator = new JsonValidator();
 
 router.get('/', function(req, res) {
     var filter = meeting_query.parseQueryString(req.query);
@@ -20,8 +21,15 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-    var meeting = createMeetingFrom(req.body);
+    var meeting = req.body;
     meeting.created_at = new Date().getTime();
+
+    var validationResult = jsonValidator.validate(meeting, meetingsSchema);
+    if(!validationResult.valid) {
+        res.status(400);
+        res.send(validationResult);
+        return;
+    }
 
     MongoClient.connect(config.mongodbUrl, function(err, db) {
         if(!err) {
@@ -33,27 +41,37 @@ router.post('/', function(req, res) {
     });
 });
 
-function createMeetingFrom(data) {
-    var attributes = ["title", "starts_at", "description", "url", "tags", "organizers", "city"];
-    var parsers = {
-        "starts_at": Date.new,
-        "created_at": Date.new
-    }
-    var newObject = {};
-    for(var x = 0; x<= attributes.length; x++) {
-        var attribute = attributes[x];
-        if(data[attribute] !== undefined) {
-            var parser = parsers[attribute] !== undefined ? parsers[attribute] : nullParser;
-            
-            newObject[attribute] = parser(data[attribute]);
-        }
-    }
+var meetingsSchema = {
+    "title": "Meeting",
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "starts_at": {
+            "type": "number"
+        },
+        "city": {
+            "type": "string"
+        },
+        "tags": {
+            "items": {
+                "type": "string"
+            },
+            "uniqueItems": true
+        },
+        "organizers": {
+            "items": {
+                "type": "string"
+            },
+            "uniqueItems": true
+        },     
 
-    return newObject;
-}
-
-function nullParser(x) {
-    return x;
-}
+    },
+    "required": ["title", "description", "starts_at", "city"]
+};
 
 module.exports = router;
