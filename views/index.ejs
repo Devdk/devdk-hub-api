@@ -8,12 +8,28 @@
     <pre>
 API USAGE:
 
-/meetings - returns all meetings
-/meetings?after=DATE - returns meetings that starts at that date or after
-/meetings?before=DATE - returns meetings that starts at that date or before
-/meetings?tags=A,B,C - returns mettings that have one of these tags
-/meetings?organizers=A,B,C - returns mettings that have one of these organizers
-/meetings?cities=A,B,C - returns mettings that is in one of these cities
+GET /meetings - returns all meetings
+GET /meetings?after=DATE - returns meetings that starts at that date or after
+GET /meetings?before=DATE - returns meetings that starts at that date or before
+GET /meetings?tags=A,B,C - returns mettings that have one of these tags
+GET /meetings?organizers=A,B,C - returns mettings that have one of these organizers
+GET /meetings?cities=A,B,C - returns mettings that is in one of these cities
+
+POST (JSON) /meeintgs - create a new meeting (valid attributes: title, starts_at, created_at, description, tags, organizers, city)
+{
+	"title": "Jespers møde!",
+	"starts_at": 1407715200000,
+	"created_at": 1406991577047,
+	"description": "Jespers møde, KUN for Jesper!",
+	"tags": [
+		"jesper"
+		],
+	"organizers": [
+		"Jesper"
+		],
+	"city": "Odense"
+}
+
     </pre>
   </body>
 </html>
