@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
     MongoClient.connect(config.mongodbUrl, function(err, db) {
         if(!err) {
             var meetings = db.collection('meetings');
-            meetings.find(query).toArray(function (err, items) {
+            meetings.find({query: query, $orderby: { starts_at : 1 } } ).toArray(function (err, items) {
               res.send(items);
             });
         }
