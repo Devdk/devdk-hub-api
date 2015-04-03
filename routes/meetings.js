@@ -5,14 +5,17 @@ var JsonValidator = require('jsonschema').Validator;
 var config = require('../config.js');
 var jsonValidator = new JsonValidator();
 var mongodb = require('../libs/mongodb.js');
+var meetings = require("../libs/meetings.js");
 
 router.get('/', function(req, res) {
     var filter = meeting_query.parseQueryString(req.query);
     var query = meeting_query.buildMongoQuery(filter);
 
-    var meetings = mongodb.db.collection('meetings');
-    meetings.find({query: query, $orderby: { starts_at : 1 } } ).toArray(function (err, items) {
-      res.send(items);
+    meetings.find(query, function (err, items) {
+        if(err) {
+            throw err;
+        }
+        res.send(items);
     });
 });
 
