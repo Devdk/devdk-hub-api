@@ -28,6 +28,32 @@ describe('Meetings', function(){
 
 		});
 	});
+
+	describe('Insert', function() {
+		it('inserts a record', function(done) {
+			var meeting = {
+				"title": "Jespers møde!",
+				"starts_at": 1407715200000,
+				"description": "Jespers møde, KUN for Jesper!",
+				"tags": [
+					"jesper"
+					],
+				"organizers": [
+					"Jesper"
+					],
+				"city": "Odense"
+			};
+			meetings.insert(meeting, function(err, meeting) {
+				if(err) {
+					done(err);
+					return;
+				}
+
+				assert(meeting._id != null);
+				done();
+			});
+		});
+	});
 });
 
 function insert(meetings, cb) {
