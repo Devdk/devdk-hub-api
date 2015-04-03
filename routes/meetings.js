@@ -32,6 +32,9 @@ router.post('/', function(req, res) {
 
     var meetings = mongodb.db.collection('meetings');
     meetings.insert(meeting, function(err, doc) {
+        if(err) {
+            throw err;
+        }
         res.send(doc.ops[0]);
     });
 });
