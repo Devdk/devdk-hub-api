@@ -2,12 +2,15 @@ var request = require('supertest')
   , express = require('express')
   , config = require('../../config.js')
   , app = require('../../app.js')
-  , assert = require("assert");
+  , assert = require("assert")
+  , test_helper = require('../test_helper.js');
  	
 config.mongodbUrl = 'mongodb://localhost:27017/hub_test';
 
 describe('Meetings', function(){
-
+  beforeEach(function(done){
+  	test_helper.clearDB(done);
+  });
   describe('GET', function(){
 
   	it('It should be okay', function(next) {
