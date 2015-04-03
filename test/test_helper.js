@@ -5,14 +5,14 @@ var mongodb = require('../libs/mongodb.js');
 config.mongodbUrl = 'mongodb://localhost:27017/hub_test';
 
 module.exports.clearDB = function(done) {
-    MongoClient.connect(config.mongodbUrl, function(err, db) {
-	    if(!err) {
-	        db.dropDatabase();
-	        done();
-	    }
-    });
+    mongodb.db.dropDatabase();
+    done();
 }
 
 before(function(done) {
 	mongodb.init(done);
 })
+
+module.exports.setupDatabase = function(done) {
+	module.exports.clearDB(done);
+};

@@ -5,11 +5,9 @@ var request = require('supertest')
   , assert = require("assert")
   , test_helper = require('../test_helper.js');
  	
-config.mongodbUrl = 'mongodb://localhost:27017/hub_test';
-
 describe('Meetings', function(){
   beforeEach(function(done){
-  	test_helper.clearDB(done);
+  	test_helper.setupDatabase(done);
   });
   describe('GET', function(){
 
