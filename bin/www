@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('hubdk:server');
 var http = require('http');
+var mongodb = require('../libs/mongodb.js');
 
 /**
  * Get port from environment and store in Express.
@@ -25,7 +26,16 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+mongodb.init(function(err) {
+  if(err) {
+    throw err;
+  }
+
+  console.log("connected to mongodb");
+
+  server.listen(port);  
+})
+
 server.on('error', onError);
 server.on('listening', onListening);
 

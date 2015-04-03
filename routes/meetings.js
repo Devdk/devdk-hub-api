@@ -1,22 +1,18 @@
 var express = require('express');
 var meeting_query = require('../libs/meetings_query.js');
 var router = express.Router();
-var MongoClient = require('mongodb').MongoClient;
 var JsonValidator = require('jsonschema').Validator;
 var config = require('../config.js');
 var jsonValidator = new JsonValidator();
+var mongodb = require('../libs/mongodb.js');
 
 router.get('/', function(req, res) {
     var filter = meeting_query.parseQueryString(req.query);
     var query = meeting_query.buildMongoQuery(filter);
 
-    MongoClient.connect(config.mongodbUrl, function(err, db) {
-        if(!err) {
-            var meetings = db.collection('meetings');
-            meetings.find({query: query, $orderby: { starts_at : 1 } } ).toArray(function (err, items) {
-              res.send(items);
-            });
-        }
+    var meetings = mongodb.db.collection('meetings');
+    meetings.find({query: query, $orderby: { starts_at : 1 } } ).toArray(function (err, items) {
+      res.send(items);
     });
 });
 
@@ -31,13 +27,9 @@ router.post('/', function(req, res) {
         return;
     }
 
-    MongoClient.connect(config.mongodbUrl, function(err, db) {
-        if(!err) {
-            var meetings = db.collection('meetings');
-            meetings.insert(meeting, function(err, doc) {
-                res.send(doc.ops[0]);
-            });
-        }
+    var meetings = mongodb.db.collection('meetings');
+    meetings.insert(meeting, function(err, doc) {
+        res.send(doc.ops[0]);
     });
 });
 
