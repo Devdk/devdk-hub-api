@@ -12,7 +12,7 @@ router.get('/', function(req, res) {
         if(err) {
             throw err;
         }
-        res.send(items);
+        res.json(items);
     });
 });
 
@@ -29,7 +29,7 @@ router.post('/', function(req, res) {
                 throw err;
             }
         }
-        res.send(meeting);
+        res.json(meeting);
     });
 });
 
