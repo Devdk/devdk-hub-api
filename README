@@ -15,3 +15,5 @@ To test:
 	npm install mocha -g
 	mongod
 	mocha test/**
+
+[Live version](https://devdk-hub-api.herokuapp.com/)
