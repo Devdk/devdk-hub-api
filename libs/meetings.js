@@ -1,7 +1,7 @@
 var mongodb = require('../libs/mongodb.js');
 var config = require('../config.js');
 var meeting_query = require('../libs/meetings_query.js');
-var meetingSchema = require('./../public/schemas/meetingSchema.json');
+var meetingSchema = require('./../public/schemas/meeting_schema.json');
 var JsonValidator = require('jsonschema').Validator;
 var jsonValidator = new JsonValidator();
 var ValidationError = function(validationResult) {

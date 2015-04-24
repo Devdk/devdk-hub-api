@@ -15,7 +15,8 @@ GET /meetings?tags=A,B,C - returns mettings that have one of these tags
 GET /meetings?organizers=A,B,C - returns mettings that have one of these organizers
 GET /meetings?cities=A,B,C - returns mettings that is in one of these cities
 
-POST (JSON) /meeintgs - create a new meeting (valid attributes: title, starts_at, created_at, description, tags, organizers, city)
+POST (JSON) /meeintgs - creates a new meeting
+Example:
 {
 	"title": "Jespers møde!",
 	"starts_at": 1407715200000,
@@ -28,7 +29,7 @@ POST (JSON) /meeintgs - create a new meeting (valid attributes: title, starts_at
 		],
 	"city": "Odense"
 }
-
+<a href="/schemas/meeting_schema.json" download>Download JSON schema</a>
     </pre>
   </body>
 </html>
