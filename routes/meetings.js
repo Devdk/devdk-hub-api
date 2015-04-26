@@ -5,7 +5,7 @@ var config = require('../config.js');
 var meetings = require("../libs/meetings.js");
 
 /**
- * @api {get} /meetings/ Gets a list of meetings
+ * @api {get} /meetings/ Get a list of meetings
  * @apiName GetMeetings
  * @apiGroup Meetings
  *
@@ -30,7 +30,7 @@ router.get('/', function(req, res) {
 });
 
 /**
- * @api {get} /meetings/:id Gets a meeting
+ * @api {get} /meetings/:id Get a meeting
  * @apiName GetMeeting
  * @apiGroup Meetings
  * @apiSuccess {Object} . meetings
@@ -52,7 +52,7 @@ router.get('/:id', function(req, res) {
 });
 
 /**
- * @api {post} /meetings/ Creates a new meeting
+ * @api {post} /meetings/ Create a new meeting
  * @apiName CreateMeeting
  * @apiGroup Meetings
  */
@@ -75,7 +75,7 @@ router.post('/', function(req, res) {
 });
 
 /**
- * @api {post} /meetings/ Updates a new meeting
+ * @api {post} /meetings/ Update a meeting
  * @apiName UpdateMeeting
  * @apiGroup Meetings
  */
