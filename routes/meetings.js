@@ -16,6 +16,22 @@ router.get('/', function(req, res) {
     });
 });
 
+router.get('/:id', function(req, res) {
+    var _id = req.params.id;
+
+    meetings.find({'_id': _id}, function(err, items) {
+        if(err) {
+            throw err;
+        }
+        if(items.length == 0) {
+            res.status(404);
+            res.send({ message: "Not found: " + _id });
+            return;
+        }
+        res.json(toPublicMeeting(items[0]));       
+    })
+});
+
 router.put('/', function(req, res) {
     var meeting = req.body;
 
