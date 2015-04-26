@@ -32,7 +32,7 @@ router.get('/:id', function(req, res) {
     })
 });
 
-router.put('/', function(req, res) {
+router.post('/', function(req, res) {
     var meeting = req.body;
 
     meetings.insert(meeting, function(err, meeting) {
@@ -45,11 +45,12 @@ router.put('/', function(req, res) {
                 throw err;
             }
         }
-        res.json(meeting);
+        res.status(201);
+        res.location('/meetings/' + meeting._id);
     });
 });
 
-router.post('/:id', function(req, res) {
+router.put('/:id', function(req, res) {
     var id = req.params.id;
     var meeting = req.body;
 
@@ -65,7 +66,7 @@ router.post('/:id', function(req, res) {
                 throw err;
             }
         }
-        res.json(meeting);
+        res.status(200);
     });
 });
 
