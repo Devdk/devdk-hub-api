@@ -49,8 +49,11 @@ router.put('/', function(req, res) {
     });
 });
 
-router.post('/', function(req, res) {
+router.post('/:id', function(req, res) {
+    var id = req.params.id;
     var meeting = req.body;
+
+    meeting._id = id;
 
     meetings.update(meeting, function(err, meeting) {
         if(err) {

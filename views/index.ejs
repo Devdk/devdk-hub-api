@@ -32,10 +32,9 @@ Example:
 }
 <a href="/schemas/meeting_schema.json" download>Download JSON schema</a>
 
-POST (JSON) /meetings - update a meeting
+POST (JSON) /meetings/:id - update a meeting
 Example:
 {
-  "_id": "23423",
   "title": "Jespers møde!",
   "starts_at": 1407715200000,
   "description": "Jespers møde, KUN for Jesper!",
@@ -47,7 +46,7 @@ Example:
     ],
   "city": "Odense"
 }
-<a href="/schemas/meeting_update_schema.json" download>Download JSON schema</a>
+<a href="/schemas/meeting_schema.json" download>Download JSON schema</a>
     </pre>
   </body>
 </html>
