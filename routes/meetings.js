@@ -12,7 +12,7 @@ router.get('/', function(req, res) {
         if(err) {
             throw err;
         }
-        res.json(items);
+        res.json(items.map(toPublicMeeting));
     });
 });
 
@@ -49,5 +49,19 @@ router.post('/', function(req, res) {
         res.json(meeting);
     });
 });
+
+function toPublicMeeting(m) {
+    return {
+        '_id': m._id,
+        'title': m.title,
+        'starts_at': m.starts_at,
+        'created_at': m.created_at,
+        'description': m.description,
+        'url': m.url,
+        'tags': m.tags,
+        'organizers': m.organizers,
+        'city': m.city
+    }
+}
 
 module.exports = router;
