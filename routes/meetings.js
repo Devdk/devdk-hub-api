@@ -33,7 +33,7 @@ router.get('/', function(req, res) {
  * @api {get} /meetings/:id Get a meeting
  * @apiName GetMeeting
  * @apiGroup Meetings
- * @apiSuccess {Object} . meetings
+ * @apiSuccess {Object} . meeting
  */
 router.get('/:id', function(req, res) {
     var _id = req.params.id;
@@ -53,6 +53,7 @@ router.get('/:id', function(req, res) {
 
 /**
  * @api {post} /meetings/ Create a new meeting
+ * @apiDescription Must pass a validation check against this <a href="/schemas/meeting_schema.json">jsonSchema</a>.
  * @apiName CreateMeeting
  * @apiGroup Meetings
  */
@@ -76,6 +77,7 @@ router.post('/', function(req, res) {
 
 /**
  * @api {post} /meetings/ Update a meeting
+ * @apiDescription Must pass a validation check against this <a href="/schemas/meeting_schema.json">jsonSchema</a>.
  * @apiName UpdateMeeting
  * @apiGroup Meetings
  */
