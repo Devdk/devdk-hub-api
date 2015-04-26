@@ -72,6 +72,7 @@ router.post('/', function(req, res) {
         }
         res.status(201);
         res.location('/meetings/' + meeting._id);
+        res.end();
     });
 });
 
@@ -98,6 +99,7 @@ router.put('/:id', function(req, res) {
             }
         }
         res.status(200);
+        res.end();
     });
 });
 
