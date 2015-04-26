@@ -33,4 +33,21 @@ router.put('/', function(req, res) {
     });
 });
 
+router.post('/', function(req, res) {
+    var meeting = req.body;
+
+    meetings.update(meeting, function(err, meeting) {
+        if(err) {
+            if(err instanceof meetings.ValidationError) {
+                res.status(400);
+                res.send(err);
+                return;                
+            } else {
+                throw err;
+            }
+        }
+        res.json(meeting);
+    });
+});
+
 module.exports = router;

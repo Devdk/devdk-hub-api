@@ -30,6 +30,23 @@ Example:
 	"city": "Odense"
 }
 <a href="/schemas/meeting_schema.json" download>Download JSON schema</a>
+
+POST (JSON) /meetings - creates a new meeting
+Example:
+{
+  "_id": "23423",
+  "title": "Jespers møde!",
+  "starts_at": 1407715200000,
+  "description": "Jespers møde, KUN for Jesper!",
+  "tags": [
+    "jesper"
+    ],
+  "organizers": [
+    "Jesper"
+    ],
+  "city": "Odense"
+}
+<a href="/schemas/meeting_update_schema.json" download>Download JSON schema</a>
     </pre>
   </body>
 </html>

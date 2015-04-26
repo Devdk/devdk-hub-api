@@ -2,6 +2,7 @@ var mongodb = require('../libs/mongodb.js');
 var config = require('../config.js');
 var meeting_query = require('../libs/meetings_query.js');
 var meetingSchema = require('./../public/schemas/meeting_schema.json');
+var meetingSchemaUpdate = require('./../public/schemas/meeting_update_schema.json');
 var JsonValidator = require('jsonschema').Validator;
 var jsonValidator = new JsonValidator();
 var ValidationError = function(validationResult) {
@@ -30,6 +31,24 @@ module.exports.insert = function(meeting, cb) {
       return;
     }
     cb(null, doc.ops[0]);
+  });
+}
+
+module.exports.update = function(meeting, cb) {
+  var validationResult = jsonValidator.validate(meeting, meetingSchemaUpdate);
+  if(!validationResult.valid) {
+    cb(new ValidationError(validationResult), null);
+    return;
+  }
+
+  var meetings = mongodb.db.collection('meetings');
+
+  meetings.save(meeting, function(err) {
+    if(err) {
+      cb(err, null);
+      return;
+    }
+    cb(null, meeting);
   });
 }
 
