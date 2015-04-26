@@ -5,50 +5,8 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <pre>
-API USAGE:
-
-GET /meetings - returns all meetings
-GET /meetings?after=DATE - returns meetings that starts at that date or after
-GET /meetings?before=DATE - returns meetings that starts at that date or before
-GET /meetings?tags=A,B,C - returns mettings that have one of these tags
-GET /meetings?organizers=A,B,C - returns mettings that have one of these organizers
-GET /meetings?cities=A,B,C - returns mettings that is in one of these cities
-GET /meetings/:id - returns a single meeting
-
-POST (JSON) /meetings - creates a new meeting
-Example:
-{
-	"title": "Jespers møde!",
-	"starts_at": 1407715200000,
-	"description": "Jespers møde, KUN for Jesper!",
-	"tags": [
-		"jesper"
-		],
-	"organizers": [
-		"Jesper"
-		],
-	"city": "Odense"
-}
-RETURNS: 201, created, with location header
-<a href="/schemas/meeting_schema.json" download>Download JSON schema</a>
-
-PUT (JSON) /meetings/:id - update a meeting
-Example:
-{
-  "title": "Jespers møde!",
-  "starts_at": 1407715200000,
-  "description": "Jespers møde, KUN for Jesper!",
-  "tags": [
-    "jesper"
-    ],
-  "organizers": [
-    "Jesper"
-    ],
-  "city": "Odense"
-}
-RETURNS: 200
-<a href="/schemas/meeting_schema.json" download>Download JSON schema</a>
-    </pre>
+    <p>Public API of the devdk-hub project. WORK IN PROGRESS.</p>
+    <p><a href="/docs">Read the API docs</a></p>
+    <p><a href="https://github.com/deldy/devdk-hub-api">Github</a></p>
   </body>
 </html>

@@ -4,6 +4,19 @@ var router = express.Router();
 var config = require('../config.js');
 var meetings = require("../libs/meetings.js");
 
+/**
+ * @api {get} /meetings/ Gets a list of meetings
+ * @apiName GetMeetings
+ * @apiGroup Meetings
+ *
+ * @apiParam {Date} after only return meetings after the date.
+ * @apiParam {Date} before only return meetings before the date.
+ * @apiParam {string} tags only return meetings containing at least one of the tags (comma-seperate).
+ * @apiParam {string} organizers only return meetings containing at least one of the organizers (comma-seperate).
+ * @apiParam {string} cities only return meetings containing at least one of the cities (comma-seperate).
+ *
+ * @apiSuccess {Object[]} . list of the meetings
+ */
 router.get('/', function(req, res) {
     var filter = meeting_query.parseQueryString(req.query);
     var query = meeting_query.buildMongoQuery(filter);
@@ -16,6 +29,12 @@ router.get('/', function(req, res) {
     });
 });
 
+/**
+ * @api {get} /meetings/:id Gets a meeting
+ * @apiName GetMeeting
+ * @apiGroup Meetings
+ * @apiSuccess {Object} . meetings
+ */
 router.get('/:id', function(req, res) {
     var _id = req.params.id;
 
@@ -32,6 +51,11 @@ router.get('/:id', function(req, res) {
     })
 });
 
+/**
+ * @api {post} /meetings/ Creates a new meeting
+ * @apiName CreateMeeting
+ * @apiGroup Meetings
+ */
 router.post('/', function(req, res) {
     var meeting = req.body;
 
@@ -50,6 +74,11 @@ router.post('/', function(req, res) {
     });
 });
 
+/**
+ * @api {post} /meetings/ Updates a new meeting
+ * @apiName UpdateMeeting
+ * @apiGroup Meetings
+ */
 router.put('/:id', function(req, res) {
     var id = req.params.id;
     var meeting = req.body;
