@@ -23,11 +23,8 @@ module.exports.insert = function(meeting, cb) {
     return;
   }
 
-  console.log("inserting");
-
   var meetings = mongodb.db.collection('meetings');
   meetings.insert(meeting, function(err, doc) {
-    console.log("inserted");
 
     if(err) {
       cb(err, null);
