@@ -16,7 +16,7 @@ function parseQueryString(query) {
 }
 
 function buildMongoQuery(filter) {
-  query = {}
+  var query = {};
   
   if(filter.after) {
     addFunctionFilter(query, "starts_at", "$gte", filter.after);
