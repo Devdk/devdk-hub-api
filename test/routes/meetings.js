@@ -55,7 +55,7 @@ describe('Meetings', function(){
 					],
 				"city": "Odense"
 			})
-	        .expect(200)
+	        .expect(201)
 	      	.end(function(err, res){
 				if (err) {
 					next(err);
