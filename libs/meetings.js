@@ -6,13 +6,12 @@ var JsonValidator = require('jsonschema').Validator;
 var jsonValidator = new JsonValidator();
 var ValidationError = function(validationResult) {
   this.validationResult = validationResult;
-}
+};
 
 module.exports.find = function(query, cb) {
   var meetings = mongodb.db.collection('meetings');
   meetings.find({query: query, $orderby: { starts_at : 1 } } ).toArray(cb);
-
-}
+};
 
 module.exports.insert = function(meeting, cb) {
 
@@ -32,7 +31,7 @@ module.exports.insert = function(meeting, cb) {
     }
     cb(null, doc.ops[0]);
   });
-}
+};
 
 module.exports.update = function(meeting, cb) {
   var validationResult = jsonValidator.validate(meeting, meetingSchema);
@@ -50,6 +49,6 @@ module.exports.update = function(meeting, cb) {
     }
     cb(null, meeting);
   });
-}
+};
 
 module.exports.ValidationError = ValidationError;
