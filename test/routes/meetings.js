@@ -60,8 +60,9 @@ describe('Meetings', function(){
 				if (err) {
 					next(err);
 					return;
-				} 
-				assert(res.body._id);
+				}
+				var pattern = /\/meetings\/.*/;
+				assert(pattern.test(res.headers["location"]), res.headers["location"] + " does not start with /meetings/");
 				next();
 			});
   	});
