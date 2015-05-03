@@ -6,3 +6,5 @@
 /// <reference path="typings/gulp/gulp.d.ts" />
 /// <reference path="typings/mocha/mocha.d.ts" />
 /// <reference path="typings/mongodb/mongodb.d.ts" />
+/// <reference path="typings/superagent/superagent.d.ts" />
+/// <reference path="typings/supertest/supertest.d.ts" />
