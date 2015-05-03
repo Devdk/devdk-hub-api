@@ -25,13 +25,13 @@ function buildMongoQuery(filter) {
     addFunctionFilter(query, "starts_at", "$lte", filter.before);
   }
   if(filter.tags) {
-    addFunctionFilter(query, "tags", "$in", req.filters.tags);
+    addFunctionFilter(query, "tags", "$in", filter.tags);
   }
   if(filter.organizers) {
-    addFunctionFilter(query, "organizers", "$in", req.filters.organizers);
+    addFunctionFilter(query, "organizers", "$in", filter.organizers);
   }
   if(filter.cities) {
-    addFunctionFilter(query, "city", "$in", req.filters.cities);
+    addFunctionFilter(query, "city", "$in", filter.cities);
   }
 
   return query;
