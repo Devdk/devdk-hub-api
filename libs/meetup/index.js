@@ -23,7 +23,7 @@ function meetupEventToMeeting(groupInformation, result) {
     description: result.description,
     url: result.event_url,
     meetup_id: result.id,
-    starts_at: new Date(result.time),
+    starts_at: result.time,
     source: {
       source_type: "meetup",
       source_id: result.id,

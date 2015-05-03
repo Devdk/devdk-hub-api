@@ -27,10 +27,11 @@ describe('Meetup', function(){
       
       assert.equal(meeting.title, "Månedligt DWOdense meetup");
       assert.equal(meeting.organizers[0], groupInformation.organizerName);
+      assert.equal(meeting.tags, groupInformation.tags);
       assert.equal(meeting.city, groupInformation.city);
       assert(meeting.description != null);
       assert.equal(meeting.url, "http://www.meetup.com/dwodense/events/219578700/");
-      assert.equal(meeting.starts_at, "Tue May 12 2015 19:00:00 GMT+0200 (CEST)");
+      assert.equal(meeting.starts_at, 1431450000000);
       assert.equal("meetup", meeting.source.source_type);
       assert(meeting.source.data != null);
       

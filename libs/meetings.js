@@ -54,6 +54,7 @@ module.exports.update = function(meeting, cb) {
 
 module.exports.batchUpdateFromSource = function(meetings, cb) {
   var meetingsCollection = mongodb.db.collection('meetings');
+  var inserted = 0, updated = 0;
   var operations = meetings.map(function(meeting) {
     return function(cb) {
         meetingsCollection.update(
@@ -66,6 +67,13 @@ module.exports.batchUpdateFromSource = function(meetings, cb) {
              upsert: true
            },
            function(err, data) {
+          
+             if(data.result.nModified == 1) {
+               updated += 1;
+             } else {
+               inserted += 1;
+             }
+             
              cb(err,data);
            }
         );      
@@ -73,7 +81,10 @@ module.exports.batchUpdateFromSource = function(meetings, cb) {
   });
   
   async.series(operations, function(err) {
-    cb(err);
+    cb(err, {
+      inserted: inserted,
+      updated: updated
+    });
   });
 };
 
