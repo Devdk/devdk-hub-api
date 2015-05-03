@@ -2,6 +2,7 @@ var mongodb = require('../libs/mongodb.js');
 var config = require('../config.js');
 var meeting_query = require('../libs/meetings_query.js');
 var meetingSchema = require('./../public/schemas/meeting_schema.json');
+var async = require('async');
 var JsonValidator = require('jsonschema').Validator;
 var jsonValidator = new JsonValidator();
 var ValidationError = function(validationResult) {
@@ -48,6 +49,31 @@ module.exports.update = function(meeting, cb) {
       return;
     }
     cb(null, meeting);
+  });
+};
+
+module.exports.batchUpdateFromSource = function(meetings, cb) {
+  var meetingsCollection = mongodb.db.collection('meetings');
+  var operations = meetings.map(function(meeting) {
+    return function(cb) {
+        meetingsCollection.update(
+           { 
+             'source.source_type': meeting.source.source_type,
+             'source.source_id': meeting.source.source_id
+            },
+           meeting,
+           {
+             upsert: true
+           },
+           function(err, data) {
+             cb(err,data);
+           }
+        );      
+    };
+  });
+  
+  async.series(operations, function(err) {
+    cb(err);
   });
 };
 

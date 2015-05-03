@@ -21,6 +21,7 @@ function meetupEventToMeeting(result) {
     starts_at: new Date(result.time),
     source: {
       source_type: "meetup",
+      source_id: result.id,
       data: result 
     }
   };
