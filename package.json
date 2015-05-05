@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "postinstall": "gulp build"
+    "postinstall": "gulp build",
+    "test": "mocha test/*/**"
   },
   "dependencies": {
     "apidoc": "^0.12.3",
