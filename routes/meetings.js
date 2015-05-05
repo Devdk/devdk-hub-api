@@ -64,7 +64,7 @@ router.post('/', function(req, res) {
         if(err) {
             if(err instanceof meetings.ValidationError) {
                 res.status(400);
-                res.send(err);
+                res.send(err.validationResult);
                 return;                
             } else {
                 throw err;
@@ -92,7 +92,7 @@ router.put('/:id', function(req, res) {
         if(err) {
             if(err instanceof meetings.ValidationError) {
                 res.status(400);
-                res.send(err);
+                res.send(err.validationResult);
                 return;                
             } else {
                 throw err;
