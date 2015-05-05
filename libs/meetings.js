@@ -3,8 +3,8 @@ var config = require('../config.js');
 var meeting_query = require('../libs/meetings_query.js');
 var meetingSchema = require('./../public/schemas/meeting_schema.json');
 var async = require('async');
-var JsonValidator = require('jsonschema').Validator;
-var jsonValidator = new JsonValidator();
+var jsonValidator = require('./json_validator');
+
 var ValidationError = function(validationResult) {
   this.validationResult = validationResult;
 };
