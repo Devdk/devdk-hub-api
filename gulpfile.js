@@ -3,7 +3,8 @@ var gulp = require('gulp'),
     async = require('async'),
     meetup = require('./libs/meetup/index'),
     meetings = require('./libs/meetings'),
-    mongodb = require('./libs/mongodb.js');
+    mongodb = require('./libs/mongodb.js'),
+    shell = require('gulp-shell');
 
 gulp.task('apidoc', function(cb){
   apidoc.exec({
@@ -11,6 +12,8 @@ gulp.task('apidoc', function(cb){
     dest: "build/docs",
   }, cb);
 });
+
+gulp.task('localdev', shell.task('nodemon', { env: { 'PORT': "3001" } }));
 
 gulp.task('massimport', function(cb) {
   
