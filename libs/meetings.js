@@ -14,6 +14,7 @@ module.exports.find = function(query, cb) {
   
   query = query || {};
   
+  // We don't want to find deleted meetings
   query.is_deleted = { '$ne': true };
   
   meetings.find({query: query, $orderby: { starts_at : 1 } } ).toArray(cb);
@@ -23,6 +24,7 @@ module.exports.insert = function(meeting, cb) {
 
   meeting.created_at = new Date().getTime();
   meeting.is_deleted = false;
+  
   var validationResult = jsonValidator.validate(meeting, meetingSchema);
   if(!validationResult.valid) {
     cb(new ValidationError(validationResult), null);
