@@ -27,6 +27,26 @@ describe('Meetings', function(){
 			})
 
 		});
+    
+    it('does not include deleted meetings', function(done) {
+      
+			var first = {
+				starts_at: Date.parse("2015/01/01"),
+        is_deleted: true
+			};
+			var secound = {
+				starts_at: Date.parse("2014/01/01")
+			};
+
+			insert([first, secound], function(err) {
+				meetings.find({}, function(err, items) {
+          assert.equal(items.length, 1);
+					assert.equal(secound.starts_at, items[0].starts_at);
+					done();
+				});
+			});
+      
+    });
 	});
 
 	describe('Insert', function() {
