@@ -15,7 +15,7 @@ module.exports.getGroupEvents = function(groupUrlname, cb) {
 };
 
 function createClient() {
-	if(!process.env.MEETUP_KEY) {
+	if(!config.meetupKey) {
 		throw "No MEETUP_KEY found in env.";
 	}
 	
