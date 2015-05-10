@@ -2,6 +2,11 @@
   "title": "Meeting",
   "type": "object",
   "properties": {
+    "url": {
+      "type": "string",
+      "minLength":1,
+      "pattern": "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$"
+    },
     "title": {
       "type": "string","minLength":1
     },
