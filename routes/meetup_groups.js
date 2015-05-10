@@ -11,12 +11,12 @@ var meetup_groups = require('../libs/meetup_groups');
  * @apiSuccess {Object[]} . list of the meetup groups
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
- *     { 
+ *     [{ 
  *       "meetupUrl": "dwodense",
  *       "organizerName": "Design and Web Development Odense",
  *       "city": "Odense",
  *       "tags": [ "web" ]
- *     }
+ *     }]
  */
 router.get('/', function(req, res, next) {
   meetup_groups.list(function(err, result) {
