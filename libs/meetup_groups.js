@@ -42,6 +42,6 @@ var groups = [
     
 module.exports.list = function(cb) {
   cb(null, groups.sort(function(x,y) {
-      return x.organizerName.localeCompare(y.organizerName, "da-DK")
+      return x.organizerName.localeCompare(y.organizerName, "da-DK");
   }));
 };

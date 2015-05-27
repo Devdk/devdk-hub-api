@@ -147,4 +147,7 @@ module.exports.batchUpdateFromSource = function(meetings, cb) {
   });
 };
 
+/**
+ * ValidationError instance
+ */
 module.exports.ValidationError = ValidationError;

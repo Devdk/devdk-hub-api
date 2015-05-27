@@ -1,20 +1,36 @@
 
+/**
+ * Add a function filter (like $in, or $gte) to a attribute
+ * 
+ * @param queryObject The query to add to
+ * @param attribute The attribute to add to
+ * @param functionName The function to add
+ * @param value The value
+ */
 function addFunctionFilter(queryObject, attribute, functionName, value) {
   queryObject[attribute] = queryObject[attribute] || {};
   queryObject[attribute][functionName] = value;
 }
 
-function parseQueryString(query) {
+/**
+ * Parses a query string into a mongodb query
+ * 
+ * @param querystring The querystring to parse
+ */
+function parseQueryString(querystring) {
   var filters = {
-    after: query.after ? Date.parse(query.after) : null,
-    before: query.before ? Date.parse(query.before) : null,
-    tags: query.tags ? query.tags.split(',').map(function(x) { return x.trim(); }) : null,
-    organizers: query.organizers ? query.organizers.split(',').map(function(x) { return x.trim(); }) : null,
-    cities: query.cities ? query.cities.split(',').map(function(x) { return x.trim(); }) : null
+    after: querystring.after ? Date.parse(querystring.after) : null,
+    before: querystring.before ? Date.parse(querystring.before) : null,
+    tags: querystring.tags ? querystring.tags.split(',').map(function(x) { return x.trim(); }) : null,
+    organizers: querystring.organizers ? querystring.organizers.split(',').map(function(x) { return x.trim(); }) : null,
+    cities: querystring.cities ? querystring.cities.split(',').map(function(x) { return x.trim(); }) : null
   };
   return filters;
 }
 
+/**
+ * Build the MongoDB query from the filter
+ */
 function buildMongoQuery(filter) {
   var query = {};
   
