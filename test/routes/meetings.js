@@ -43,15 +43,13 @@ describe('Meetings', function(){
   	it('It should be okay', function(next) {
   		request(app)
   			.get('/meetings')
-  			.expect(200)
-  			.end(next);
+  			.expect(200, next);
   	});
 
   	it('It should return JSON', function(next) {
   		request(app)
   			.get('/meetings')
-  			.expect(200)
-  			.end(next);
+  			.expect(200, next);
 	 	});
 
   });
@@ -62,16 +60,14 @@ describe('Meetings', function(){
 			  .post('/meetings')
 			  .send(fixtures.validMeeting)
 	      .expect(201)
-        .expect('location', /\/meetings\/.*/)
-	      .end(next);
+        .expect('location', /\/meetings\/.*/, next);
   	});
 
   	it('Should reject invalid meetings', function(next) {
       request(app)
 			  .post('/meetings')
 			  .send(fixtures.invalidMeeting)
-	      .expect(400)
-	      .end(next);
+	      .expect(400, next);
   	});
   });
 });

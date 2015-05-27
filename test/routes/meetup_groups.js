@@ -16,16 +16,14 @@ describe('Meetup Groups', function(){
   	it('It should be okay', function(next) {
   		request(app)
   			.get('/meetup_groups')
-  			.expect(200)
-  			.end(next);
+  			.expect(200, next);
 	  });
      
   	it('It should return json', function(next) {
   		request(app)
   			.get('/meetup_groups')
   			.expect(200)
-        .expect('Content-Type', /json/)
-  			.end(next);
+        .expect('Content-Type', /json/, next);
 	   });
 
   });
