@@ -1,8 +1,8 @@
 var assert = require("assert");
-var meetings = require("../../libs/meetings.js");
-var meetings_query = require("../../libs/meetings_query.js")
-var test_helper = require("../test_helper.js");
-var mongodb = require("../../libs/mongodb.js");
+var meetings = require("../../libs/meetings");
+var meetings_query = require("../../libs/meetings_query")
+var test_helper = require("../test_helper");
+var mongodb = require("../../libs/mongodb");
 
 var fixtures = {
   meeting1: {

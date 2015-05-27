@@ -1,8 +1,8 @@
 var express = require('express');
-var meeting_query = require('../libs/meetings_query.js');
+var meeting_query = require('../libs/meetings_query');
 var router = express.Router();
-var config = require('../config.js');
-var meetings = require("../libs/meetings.js");
+var config = require('../config');
+var meetings = require("../libs/meetings");
 
 /**
  * @api {get} /meetings/ Get a list of meetings

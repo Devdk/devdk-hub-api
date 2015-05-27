@@ -1,5 +1,5 @@
 var assert = require("assert")
-var meetings_query = require("../../libs/meetings_query.js")
+var meetings_query = require("../../libs/meetings_query")
 
 describe('Meetings', function(){
   describe('parseQueryString', function(){

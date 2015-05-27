@@ -1,9 +1,9 @@
 var request = require('supertest')
   , express = require('express')
-  , config = require('../../config.js')
-  , app = require('../../app.js')
+  , config = require('../../config')
+  , app = require('../../app')
   , assert = require("assert")
-  , test_helper = require('../test_helper.js');
+  , test_helper = require('../test_helper');
 
 var fixtures = {
   validMeeting: {

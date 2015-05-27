@@ -1,7 +1,7 @@
 var proxyquire =  require('proxyquire');
 var assert = require("assert");
 var meetup = proxyquire("../../../libs/meetup/index", {
-  "./api": require("./api_mock.js")
+  "./api": require("./api_mock")
 });
 
 var groupInformation = {

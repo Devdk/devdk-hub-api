@@ -3,7 +3,7 @@ var gulp = require('gulp'),
     async = require('async'),
     meetup = require('./libs/meetup/index'),
     meetings = require('./libs/meetings'),
-    mongodb = require('./libs/mongodb.js'),
+    mongodb = require('./libs/mongodb'),
     shell = require('gulp-shell'),
     meetup_groups = require('./libs/meetup_groups');
 
