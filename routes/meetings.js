@@ -88,7 +88,7 @@ router.put('/:id', function(req, res) {
 
     meeting._id = id;
 
-    meetings.update(meeting, function(err, meeting) {
+    meetings.save(meeting, function(err, meeting) {
         if(err) {
             if(err instanceof meetings.ValidationError) {
                 res.status(400);

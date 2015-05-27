@@ -4,6 +4,46 @@ var meetings_query = require("../../libs/meetings_query.js")
 var test_helper = require("../test_helper.js");
 var mongodb = require("../../libs/mongodb.js");
 
+var fixtures = {
+  meeting1: {
+		"title": "Jespers møde!",
+		"starts_at": 1407715200000,
+		"description": "Jespers møde, KUN for Jesper!",
+		"tags": [
+			"jesper"
+			],
+		"organizers": [
+			"Jesper"
+			],
+		"city": "Odense"
+	},
+  meeting2: {
+  	"title": "Jespers møde!",
+  	"starts_at": 1407715200000,
+  	"description": "Jespers møde, KUN for Jesper!",
+  	"tags": [
+  		"jesper"
+  		],
+  	"organizers": [
+  		"Jesper"
+  		],
+  	"city": "Odense",
+    "source": {
+      "source_type": "testing",
+      "source_id": 1337
+    }
+  }
+};
+
+function insert(meetings, cb) {
+	var db = mongodb.db;
+	var collection = db.collection("meetings");
+
+	collection.insert(meetings, function(err) {
+		cb(err);
+	});
+}
+
 describe('Meetings', function(){
 	beforeEach(function(done){
 		test_helper.setupDatabase(done);
@@ -51,18 +91,7 @@ describe('Meetings', function(){
 
 	describe('Insert', function() {
 		it('inserts a record', function(done) {
-			var meeting = {
-				"title": "Jespers møde!",
-				"starts_at": 1407715200000,
-				"description": "Jespers møde, KUN for Jesper!",
-				"tags": [
-					"jesper"
-					],
-				"organizers": [
-					"Jesper"
-					],
-				"city": "Odense"
-			};
+			var meeting = fixtures.meeting1;
 			meetings.insert(meeting, function(err, meeting) {
 				if(err) {
 					done(err);
@@ -75,23 +104,27 @@ describe('Meetings', function(){
 		});
 	});
   
+  describe('Save', function() {
+		it('Saves a meeting', function(done) {
+			var meeting = fixtures.meeting1;
+			meetings.insert(meeting, function(err, meeting) {
+				if(err) {
+					done(err);
+					return;
+				}
+        
+        meeting.title = "NEW MEETING";
+        
+        meetings.save(meeting, function(err2, meeting2) {        
+  				assert.equal(meeting2.title, "NEW MEETING");
+  				done();
+        });
+			});
+		});
+	});
+  
   describe('Batch update from source', function() {
-    var meeting = {
-    	"title": "Jespers møde!",
-    	"starts_at": 1407715200000,
-    	"description": "Jespers møde, KUN for Jesper!",
-    	"tags": [
-    		"jesper"
-    		],
-    	"organizers": [
-    		"Jesper"
-    		],
-    	"city": "Odense",
-      "source": {
-        "source_type": "testing",
-        "source_id": 1337
-      }
-    };
+    var meeting = fixtures.meeting2;
     
     it('inserts a meeting if it does not exist', function(done) {
       meetings.batchUpdateFromSource([meeting], function(err) {
@@ -135,12 +168,3 @@ describe('Meetings', function(){
     });
   });
 });
-
-function insert(meetings, cb) {
-	var db = mongodb.db;
-	var collection = db.collection("meetings");
-
-	collection.insert(meetings, function(err) {
-		cb(err);
-	});
-}
