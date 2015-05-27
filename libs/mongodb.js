@@ -7,6 +7,6 @@ module.exports.init = function(callback) {
 			module.exports.db = db;
 		}
 
-		callback(err);
+		return callback(err);
 	});
 };

@@ -40,8 +40,8 @@ var groups = [
       { meetupUrl: "Aarhus-Python-Django-Meetup", organizerName: "Aarhus Python/Django Meetup", city: "Aarhus", tags: [ "Python", "Django" ] },
     ];
     
-module.exports.list = function(cb) {
-  cb(null, groups.sort(function(x,y) {
+module.exports.list = function(callback) {
+  return callback(null, groups.sort(function(x,y) {
       return x.organizerName.localeCompare(y.organizerName, "da-DK");
   }));
 };
