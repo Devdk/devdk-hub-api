@@ -6,22 +6,18 @@ var request = require('supertest')
   , test_helper = require('../test_helper.js');
  	
 describe('Meetup Groups', function(){
+  
   beforeEach(function(done){
   	test_helper.setupDatabase(done);
   });
+  
   describe('GET', function(){
     
   	it('It should be okay', function(next) {
   		request(app)
   			.get('/meetup_groups')
   			.expect(200)
-  			.end(function(err, res){
-  				if (err) {
-  					next(err);
-  					return;
-  				}
-  				next();
-  			});
+  			.end(next);
 	  });
      
   	it('It should return json', function(next) {
@@ -29,14 +25,8 @@ describe('Meetup Groups', function(){
   			.get('/meetup_groups')
   			.expect(200)
         .expect('Content-Type', /json/)
-  			.end(function(err, res){
-  				if (err) {
-  					next(err);
-  					return;
-  				}
-
-  				next();
-  			});
+  			.end(next);
 	   });
+
   });
 });

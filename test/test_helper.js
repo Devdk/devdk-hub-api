@@ -4,14 +4,20 @@ var mongodb = require('../libs/mongodb.js');
 
 config.mongodbUrl = 'mongodb://localhost:27017/hub_test';
 
-module.exports.clearDB = function(done) {
-  mongodb.db.collection('meetings').remove({}, done);
-};
-
 before(function(done) {
 	mongodb.init(done);
-})
+});
 
-module.exports.setupDatabase = function(done) {
-	module.exports.clearDB(done);
+var TestHelper = {
+
+  clearDB: function(done) {
+    mongodb.db.collection('meetings').remove({}, done);
+  },
+
+  setupDatabase: function(done) {
+  	this.clearDB(done);
+  },
+  
 };
+
+module.exports = TestHelper;
