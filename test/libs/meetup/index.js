@@ -1,15 +1,7 @@
 var proxyquire =  require('proxyquire');
 var assert = require("assert");
-var fs = require("fs");
 var meetup = proxyquire("../../../libs/meetup/index", {
-  "./api": {
-    getGroupEvents: function(groupname, cb) {
-      fs.readFile(__dirname + '/../../data/meetup_getGroupEvents.json', 'utf8', function (err, data) {
-        if (err) throw err;
-        cb(null, JSON.parse(data));
-      });
-    }
-  }
+  "./api": require("./api_mock.js")
 });
 
 var groupInformation = {

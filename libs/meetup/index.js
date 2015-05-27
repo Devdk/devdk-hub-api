@@ -1,17 +1,8 @@
 var api = require("./api");
 
-module.exports.getMeetingsFromGroup = function(groupInformation, cb) {
-  api.getGroupEvents(groupInformation.meetupUrl, function(err, data) {
-    if(err) {
-      cb(err);
-    }
-    
-    var output = data.results.map(function(x) { return meetupEventToMeeting(groupInformation, x); });
-    
-    cb(null, output);
-  });
-};
-
+/**
+ * Mapper that maps from a meetup event to a internal meeting.
+ */
 function meetupEventToMeeting(groupInformation, result) {
   return {
     title: result.name,
@@ -31,3 +22,22 @@ function meetupEventToMeeting(groupInformation, result) {
     }
   };
 }
+
+/**
+ * Gets a list of internal meetings using a instance of groupInformation.
+ * 
+ * @param groupInformation a instance of a groupInformation object that contains the information needed for the group.
+ * @param callback The callback. Will get a array of internal meeting objects.
+ */
+module.exports.getMeetingsFromGroup = function(groupInformation, callback) {
+  api.getEvents(groupInformation.meetupUrl, function(err, data) {
+    if(err) {
+      callback(err);
+    }
+    
+    // We map each item from the meetup record type to the internal record type
+    var output = data.results.map(function(x) { return meetupEventToMeeting(groupInformation, x); });
+    
+    callback(null, output);
+  });
+};

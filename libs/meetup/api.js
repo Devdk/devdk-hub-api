@@ -1,17 +1,14 @@
 var MeetupClient = require('meetup-api');
 var config = require('../../config.js');
 
-module.exports.getGroupEvents = function(groupUrlname, cb) {
+module.exports.getEvents = function(groupUrlname, callback) {
 	var client = createClient();
-	client.getEvents({
+  
+  var params = {
 		group_urlname: groupUrlname
-	}, function(error, events) {
-		if (error) {
-			cb(error, null);
-		} else {
-			cb(null, events);
-		}
-	});	
+	};
+  
+	client.getEvents(params, callback);	
 };
 
 function createClient() {
