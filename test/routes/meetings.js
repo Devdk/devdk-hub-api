@@ -62,17 +62,8 @@ describe('Meetings', function(){
 			  .post('/meetings')
 			  .send(fixtures.validMeeting)
 	      .expect(201)
-	      .end(function(err, res){
-          if (err) {
-          	next(err);
-          	return;
-          }
-          
-          var pattern = /\/meetings\/.*/;
-          assert(pattern.test(res.headers["location"]), res.headers["location"] + " does not start with /meetings/");
-          next();
-		    }
-      );
+        .expect('location', /\/meetings\/.*/)
+	      .end(next);
   	});
 
   	it('Should reject invalid meetings', function(next) {
