@@ -59,19 +59,20 @@ describe('Meetings', function(){
   describe('POST', function() {
     it('Should accept a valid meeting', function(next) {
       request(app)
-			 .post('/meetings')
-			 .send(fixtures.validMeeting)
+			  .post('/meetings')
+			  .send(fixtures.validMeeting)
 	      .expect(201)
 	      .end(function(err, res){
-  				if (err) {
-  					next(err);
-  					return;
-  				}
+          if (err) {
+          	next(err);
+          	return;
+          }
           
-  				var pattern = /\/meetings\/.*/;
-  				assert(pattern.test(res.headers["location"]), res.headers["location"] + " does not start with /meetings/");
-  				next();
-			});
+          var pattern = /\/meetings\/.*/;
+          assert(pattern.test(res.headers["location"]), res.headers["location"] + " does not start with /meetings/");
+          next();
+		    }
+      );
   	});
 
   	it('Should reject invalid meetings', function(next) {
