@@ -7,7 +7,6 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var meetings = require('./routes/meetings');
 var meetup_groups = require('./routes/meetup_groups');
 
@@ -29,7 +28,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.use('/', routes);
-app.use('/users', users);
 app.use('/meetings', meetings);
 app.use('/meetup_groups', meetup_groups);
 

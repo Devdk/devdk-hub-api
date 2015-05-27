@@ -17,13 +17,13 @@ var meetings = require("../libs/meetings.js");
  *
  * @apiSuccess {Object[]} . list of the meetings
  */
-router.get('/', function(req, res) {
+router.get('/', function(req, res, next) {
     var filter = meeting_query.parseQueryString(req.query);
     var query = meeting_query.buildMongoQuery(filter);
 
     meetings.find(query, function (err, items) {
         if(err) {
-            throw err;
+            return next(err);
         }
         res.json(items.map(toPublicMeeting));
     });
@@ -35,12 +35,12 @@ router.get('/', function(req, res) {
  * @apiGroup Meetings
  * @apiSuccess {Object} . meeting
  */
-router.get('/:id', function(req, res) {
+router.get('/:id', function(req, res, next) {
     var _id = req.params.id;
 
     meetings.find({'_id': _id}, function(err, items) {
         if(err) {
-            throw err;
+            next(err);
         }
         if(items.length == 0) {
             res.status(404);
@@ -57,7 +57,7 @@ router.get('/:id', function(req, res) {
  * @apiName CreateMeeting
  * @apiGroup Meetings
  */
-router.post('/', function(req, res) {
+router.post('/', function(req, res, next) {
     var meeting = req.body;
 
     meetings.insert(meeting, function(err, meeting) {
@@ -67,7 +67,7 @@ router.post('/', function(req, res) {
                 res.send(err.validationResult);
                 return;                
             } else {
-                throw err;
+                next(err);
             }
         }
         res.status(201);
@@ -82,7 +82,7 @@ router.post('/', function(req, res) {
  * @apiName UpdateMeeting
  * @apiGroup Meetings
  */
-router.put('/:id', function(req, res) {
+router.put('/:id', function(req, res, next) {
     var id = req.params.id;
     var meeting = req.body;
 
@@ -95,7 +95,7 @@ router.put('/:id', function(req, res) {
                 res.send(err.validationResult);
                 return;                
             } else {
-                throw err;
+                next(err);
             }
         }
         res.status(200);

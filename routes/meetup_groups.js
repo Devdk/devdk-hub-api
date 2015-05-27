@@ -21,7 +21,7 @@ var meetup_groups = require('../libs/meetup_groups');
 router.get('/', function(req, res, next) {
   meetup_groups.list(function(err, result) {
     res.json(result);
-  })
+  });
 });
 
 module.exports = router;
