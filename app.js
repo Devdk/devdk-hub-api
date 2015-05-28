@@ -21,7 +21,7 @@ app.use(cors());
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 
-if (process.env.NODE_ENV !== 'test') {
+if (app.get('env') !== 'test') {
   app.use(logger('dev'));
 }
 
