@@ -19,4 +19,13 @@ To test:
 * mongod
 * mocha test/**
 
+To host:
+* run 'grunt build' on every publish
+* Following ENVs must be set, when running the server or command
+  1. NODE_ENV=production
+  2. MONGO_URI=*URL_TO_MONGO/DB*
+  3. MEETUP_KEY=*API Key from [Meetup](https://secure.meetup.com/meetup_api/key/)*
+* Run *npm run start* to start the server.
+* Set up a cron job to run at a certain interval (like 1 hour): *grunt massimport* - this will fetch meetings from meetup.
+
 [Live version](https://devdk-hub-api.herokuapp.com/)
