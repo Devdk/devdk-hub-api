@@ -20,7 +20,7 @@ To test:
 * mocha test/**
 
 To host:
-* run 'grunt build' on every publish
+* run 'npm run postinstall' on every publish
 * Following ENVs must be set, when running the server or command
   1. NODE_ENV=production
   2. MONGO_URI=*URL_TO_MONGO/DB*
