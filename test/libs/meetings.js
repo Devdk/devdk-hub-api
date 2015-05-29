@@ -115,7 +115,7 @@ describe('Meetings', function(){
         
         meeting.title = "NEW MEETING";
         
-        meetings.save(meeting, function(err2, meeting2) {        
+        meetings.save(meeting.id, meeting, function(err2, meeting2) {        
   				assert.equal(meeting2.title, "NEW MEETING");
   				done();
         });
