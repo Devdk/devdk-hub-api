@@ -4,6 +4,7 @@ var meeting_query = require('../libs/meetings_query');
 var meetingSchema = require('./../public/schemas/meeting_schema.json');
 var async = require('async');
 var jsonValidator = require('./json_validator');
+var ObjectID = require('mongodb').ObjectID;
 
 var Meetings = {
   
@@ -21,6 +22,17 @@ var Meetings = {
     query.is_deleted = { '$ne': true };
     
     meetings.find({query: query, $orderby: { starts_at : 1 } } ).toArray(cb);
+  },
+  
+  get: function(id, callback) {
+    var meetings = this._getMeetingsCollection();
+    meetings.find({query: { _id: ObjectID(id) } } ).toArray(function(err, data) {
+      if(err) {
+        return callback(err);
+      }
+      
+      return callback(null, data[0]);
+    });
   },
   
   /**
@@ -54,14 +66,16 @@ var Meetings = {
   * @param meeting The meeting to save
   * @param callback The callback, will get the meeting returned. 
   */
-  save: function(meeting, callback) {
+  save: function(id, meeting, callback) {
     if(!this._validateMeeting(meeting, callback)) {
       return;
     }
     
+    delete meeting._id;
+    
     var meetings = this._getMeetingsCollection();
   
-    meetings.save(meeting, function(err) {
+    meetings.update({ _id: ObjectID(id)}, { $set: meeting }, function(err) {
       if(err) {
         return callback(err, null);
       }

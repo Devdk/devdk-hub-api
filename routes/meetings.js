@@ -38,17 +38,17 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
     var _id = req.params.id;
 
-    meetings.find({'_id': _id}, function(err, items) {
-        if(err) {
-            next(err);
-        }
-        if(items.length == 0) {
-            res.status(404);
-            res.send({ message: "Not found: " + _id });
-            return;
-        }
-        res.json(toPublicMeeting(items[0]));       
-    })
+    meetings.get(_id, function(err, item) {
+      if(err) {
+        next(err);
+      }
+      if(!item) {
+        res.status(404);
+        res.send({ message: "Not found: " + _id });
+        return;
+      }
+      res.json(toPublicMeeting(item));     
+    });
 });
 
 /**
@@ -77,7 +77,7 @@ router.post('/', function(req, res, next) {
 });
 
 /**
- * @api {post} /meetings/ Update a meeting
+ * @api {put} /meetings/ Update a meeting
  * @apiDescription Must pass a validation check against this <a href="/schemas/meeting_schema.json">jsonSchema</a>.
  * @apiName UpdateMeeting
  * @apiGroup Meetings
@@ -86,9 +86,7 @@ router.put('/:id', function(req, res, next) {
     var id = req.params.id;
     var meeting = req.body;
 
-    meeting._id = id;
-
-    meetings.save(meeting, function(err, meeting) {
+    meetings.save(id, meeting, function(err, meeting) {
         if(err) {
             if(err instanceof meetings.ValidationError) {
                 res.status(400);
