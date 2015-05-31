@@ -26,6 +26,6 @@ To host:
   2. MONGO_URI=*URL_TO_MONGO/DB*
   3. MEETUP_KEY=*API Key from [Meetup](https://secure.meetup.com/meetup_api/key/)*
 * Run *npm run start* to start the server.
-* Set up a cron job to run at a certain interval (like 1 hour): *grunt massimport* - this will fetch meetings from meetup.
+* Set up a cron job to run at a certain interval (like 1 hour): *gulp massimport* - this will fetch meetings from meetup. (Remember to give it the MEETUP_KEY env variable too)
 
 [Live version](https://devdk-hub-api.herokuapp.com/)
