@@ -25,8 +25,10 @@ function meetupEventToMeeting(groupInformation, result) {
       city.distance = getDistance(lat, lon, city.lat, city.lon);
     });
     
-    if(cities.length > 0) {
-      var closest = _.min(cities.filter(function(city) { return city.distance <= 50; }), function(city) {
+    var closeCities = cities.filter(function(city) { return city.distance <= 50; });
+    
+    if(closeCities.length > 0) {
+      var closest = _.min(closeCities, function(city) {
         return city.distance;
       });
       
