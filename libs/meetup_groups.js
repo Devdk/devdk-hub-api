@@ -45,6 +45,17 @@ var MeetupGroups = {
     { meetupUrl: "Big-Data-Denmark", organizerName: "Big Data Denmark", city: "Aarhus", tags: [ "Big Data" ] },
     { meetupUrl: "Aarhus-Python-Django-Meetup", organizerName: "Aarhus Python/Django Meetup", city: "Aarhus", tags: [ "Python", "Django" ] },
     { meetupUrl: "Google-Developer-Group-Aarhus", organizerName: "Google Developer Group Aarhus", city: "Aarhus", tags: [ "web", "Dart", "Google App Engine", "Android", "Angular" ] },
+    { meetupUrl: "AgilityLab", organizerName: "#AgilityLab Copenhagen", city: "København", tags: [ "agile" ] },   
+    { meetupUrl: "Copenhagen-Elastic-Fantastics", organizerName: "Elastic - Copenhagen", city: "København", tags: [ "analytics", "Elasticsearch" ] },
+    { meetupUrl: "Copenhagen-BDD-Meetup", organizerName: "Copenhagen BDD Meetup", city: "København", tags: [ "BDD", "Architecture" ] },
+    { meetupUrl: "copenhagen-ecommerce", organizerName: "Copenhagen e-commerce", city: "København", tags: [ "web" ] },
+    { meetupUrl: "Design-Thinking-Copenhagen", organizerName: "Design Thinking Copenhagen", city: "København", tags: [ "design" ] },
+    { meetupUrl: "CPH-VR-AR-360", organizerName: "Copenhagen VR + AR + 360", city: "København" },
+    { meetupUrl: "datacph", organizerName: "Data Science and Machine Learning in Copenhagen", city: "København", tags: [ "Big Data" ] },
+    { meetupUrl: "Copenhagen-Tech-Polyglots", organizerName: "Copenhagen Tech Polyglot Meetup", city: "København" },
+    { meetupUrl: "Agile-Copenhagen", organizerName: "Agile Copenhagen", city: "København", tags: [ "agile" ] },
+    { meetupUrl: "Professional-Scrum-with-Lean-Coffee", organizerName: "Professional Scrum with Lean Coffee", city: "København", tags: [ "agile" ] },
+    { meetupUrl: "Copenhagen-Puppet-User-Group", organizerName: "Copenhagen Puppet User Group", city: "København", tags: [ "puppet" ] },
   ]
 };
 
