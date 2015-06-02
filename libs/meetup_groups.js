@@ -44,6 +44,7 @@ var MeetupGroups = {
     { meetupUrl: "aarhusrb", organizerName: "aarhus.rb", city: "Aarhus", tags: [ "Ruby" ] },
     { meetupUrl: "Big-Data-Denmark", organizerName: "Big Data Denmark", city: "Aarhus", tags: [ "Big Data" ] },
     { meetupUrl: "Aarhus-Python-Django-Meetup", organizerName: "Aarhus Python/Django Meetup", city: "Aarhus", tags: [ "Python", "Django" ] },
+    { meetupUrl: "Google-Developer-Group-Aarhus", organizerName: "Google Developer Group Aarhus", city: "Aarhus", tags: [ "web", "Dart", "Google App Engine", "Android", "Angular" ] },
   ]
 };
 
