@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+var mass_importer = require('../libs/mass_importer');
+
+mass_importer.import();

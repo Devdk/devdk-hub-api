@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "postinstall": "gulp build",
     "test": "NODE_ENV=test mocha --reporter spec test/libs test/routes test/libs/meetup/",
-    "dev": "PORT=3001 nodemon"
+    "dev": "PORT=3001 nodemon",
+    "massimport": "node ./bin/massimport"
   },
   "dependencies": {
     "apidoc": "^0.12.3",
