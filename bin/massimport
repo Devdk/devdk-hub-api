@@ -2,4 +2,10 @@
 
 var mass_importer = require('../libs/mass_importer');
 
-mass_importer.import();
+mass_importer.import(function(err) {
+  if(err) {
+    throw err;
+  }
+  
+  console.log("Done");
+});
