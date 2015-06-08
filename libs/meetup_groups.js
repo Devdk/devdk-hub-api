@@ -5,6 +5,7 @@ var MeetupGroups = {
     }));    
   },
   _groups: [
+    { meetupUrl: "ionicdenmark", organizerName; "Ionic Denmark", city: "Århus", tags: ["ionic", "hybrid apps", "web", "mobile apps"] },
     { meetupUrl: "dwodense", organizerName: "Design and Web Development Odense", city: "Odense", tags: [ "web" ] },
     { meetupUrl: "Odense-NET-User-Group", organizerName: "Odense .NET User Group", city: "Odense", tags: [ ".net" ] },
     { meetupUrl: "umbracodk", organizerName: "Umbraco DK", city: "Odense", tags: [ ".net", "umbraco" ] },
