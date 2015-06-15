@@ -6,15 +6,29 @@ var async = require('async'),
 
 var MassImporter = {
   'import': function(callback) {
-    mongodb.init(function() {
+    mongodb.init(function(err) {
+      
+      if(err) {
+        return callback(err);
+      }
+      
+      console.log("Connected to MongoDB");
       
       meetup_groups.list(function(err, groupList) {
+        
+        if(err) {
+          return callback(err);
+        }
         
         var operations = groupList.map(function(group) {
           return MassImporter.importGroup.bind(null, group); 
         });
       
         async.series(operations, function(err) {
+          if(err) {
+            return callback(err);
+          }
+          
           mongodb.db.close();
           
           return callback(err);
