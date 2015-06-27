@@ -5,14 +5,14 @@ var async = require('async'),
     meetup_groups = require('./meetup_groups');
 
 var MassImporter = {
-  'import': function(callback) {
+  'import': function(logger, callback) {
     mongodb.init(function(err) {
       
       if(err) {
         return callback(err);
       }
       
-      console.log("Connected to MongoDB");
+      logger.info("Connected to MongoDB");
       
       meetup_groups.list(function(err, groupList) {
         
@@ -21,7 +21,7 @@ var MassImporter = {
         }
         
         var operations = groupList.map(function(group) {
-          return MassImporter.importGroup.bind(null, group); 
+          return MassImporter.importGroup.bind(null, logger, group); 
         });
       
         async.series(operations, function(err) {
@@ -38,8 +38,8 @@ var MassImporter = {
     
     });
   },
-  importGroup: function(group, callback) {
-    console.log("importing from " + group.meetupUrl);
+  importGroup: function(logger, group, callback) {
+    logger.info("importing from " + group.meetupUrl);
     meetup.getMeetingsFromGroup(group, function(err, data) {
       if(err) {
         return callback(err);
@@ -50,7 +50,7 @@ var MassImporter = {
           return callback(err);
         }
         
-        console.log("imported " + data.length + " meetings. (Inserted " + result.inserted+ ". Updated " + result.updated + ")");
+        logger.info("imported " + data.length + " meetings. (Inserted " + result.inserted+ ". Updated " + result.updated + ")");
         
         return callback(null);
       });

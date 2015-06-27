@@ -1,13 +1,19 @@
 #!/usr/bin/env node
 
 var mass_importer = require('../libs/mass_importer');
+var winston = require('winston');
+var MongoDB = require('winston-mongodb').MongoDB;
+var config = require('../config');
 
-console.log("Starting import");
+winston.add(MongoDB, {db: config.mongodbUrl});
 
-mass_importer.import(function(err) {
+winston.info("Starting import");
+
+mass_importer.import(winston, function(err) {
   if(err) {
+    winston.error(err);
     throw err;
   }
   
-  console.log("Done");
+  winston.info("Done");
 });

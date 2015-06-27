@@ -28,7 +28,9 @@
     "mongodb": "^2.0.25",
     "morgan": "~1.5.1",
     "proxyquire": "^1.4.0",
-    "serve-favicon": "~2.2.0"
+    "serve-favicon": "~2.2.0",
+    "winston": "^1.0.1",
+    "winston-mongodb": "^1.1.1"
   },
   "devDependencies": {
     "supertest": "^0.15.0"
