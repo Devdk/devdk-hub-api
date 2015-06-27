@@ -9,6 +9,7 @@ var cors = require('cors');
 var routes = require('./routes/index');
 var meetings = require('./routes/meetings');
 var meetup_groups = require('./routes/meetup_groups');
+var logs = require('./routes/logs');
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use('/', routes);
 app.use('/meetings', meetings);
 app.use('/meetup_groups', meetup_groups);
+app.use('/logs', logs);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
