@@ -6,6 +6,7 @@ var MongoDB = require('winston-mongodb').MongoDB;
 var config = require('../config');
 
 winston.add(MongoDB, {db: config.mongodbUrl});
+winston.add(winston.transports.File, { filename: 'logs/massimport.log' });
 
 winston.info("Starting import");
 
