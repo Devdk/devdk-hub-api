@@ -16,5 +16,7 @@ mass_importer.import(winston, function(err) {
     throw err;
   }
   
-  winston.info("Done");
+  winston.info("Done", function() {
+    process.exit(0);
+  });
 });
