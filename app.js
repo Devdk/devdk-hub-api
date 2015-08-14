@@ -1,4 +1,3 @@
-throw "TURNED OFF FOR TEST"
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
