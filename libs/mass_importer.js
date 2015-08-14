@@ -48,6 +48,4 @@ var MassImporter = {
   }
 };
 
-MassImporter.closeMongo = true;
-
 module.exports = MassImporter;
