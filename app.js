@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.use('/', routes);
-app.use('/meetings', meetings);
+//app.use('/meetings', meetings);
 app.use('/meetup_groups', meetup_groups);
 app.use('/logs', logs);
 app.use('/import', importRoute);
