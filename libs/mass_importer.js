@@ -5,13 +5,7 @@ var async = require('async'),
     meetup_groups = require('./meetup_groups');
 
 var MassImporter = {
-  'import': function(logger, callback) {
-    mongodb.init(function(err) {
-      
-      if(err) {
-        return callback(err);
-      }
-      
+  'import': function(logger, callback) {      
       logger.info("Connected to MongoDB");
       
       meetup_groups.list(function(err, groupList) {
@@ -29,14 +23,10 @@ var MassImporter = {
             return callback(err);
           }
           
-          mongodb.db.close();
-          
           return callback(err);
         });
       
       });
-    
-    });
   },
   importGroup: function(logger, group, callback) {
     logger.info("importing from " + group.meetupUrl);
@@ -57,5 +47,7 @@ var MassImporter = {
     });
   }
 };
+
+MassImporter.closeMongo = true;
 
 module.exports = MassImporter;

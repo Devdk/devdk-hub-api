@@ -67,7 +67,7 @@ function meetupEventToMeeting(groupInformation, result) {
 module.exports.getMeetingsFromGroup = function(groupInformation, callback) {
   api.getEvents(groupInformation.meetupUrl, function(err, data) {
     if(err) {
-      callback(err);
+      return callback(err);
     }
     
     // We map each item from the meetup record type to the internal record type
