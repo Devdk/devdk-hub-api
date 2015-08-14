@@ -1,9 +1,9 @@
 var MeetupClient = require('meetup-api');
 var config = require('../../config');
 
-module.exports.getEvents = function(groupUrlname, callback) {
+module.exports.getEvents = function(groupUrlname, apiKey, callback) {
 	try {
-    var client = createClient();
+    var client = createClient(apiKey);
     var params = {
   		group_urlname: groupUrlname
   	};
@@ -14,12 +14,12 @@ module.exports.getEvents = function(groupUrlname, callback) {
   }
 };
 
-function createClient() {
-	if(!config.meetupKey) {
-		throw "No MEETUP_KEY found in env.";
+function createClient(apiKey) {
+	if(!apiKey) {
+		throw "apiKey was not set.";
 	}
 	
 	return MeetupClient({
-		key: config.meetupKey
+		key: apiKey
 	});
 }

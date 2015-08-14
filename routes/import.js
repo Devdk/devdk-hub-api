@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mass_importer = require('../libs/mass_importer');
-var winston = require('winston');
+var config = require('../config');
 
 var Logger = function() {
   this.result = '';
@@ -20,12 +20,14 @@ Logger.prototype.error = function(msg) {
 router.get('/', function(req, res, next) {
   
   var logger = new Logger();
-  mass_importer.import(logger, function(err) {
+  var importerConfig = { meetupKey: req.query.apikey || config.meetupKey };
+
+  mass_importer.import(logger, importerConfig, function(err) {
     if(err) {
-      logger.error(err);
+      logger.error(err.stack);
     }
     
-    return res.send(200,logger.result);
+    return res.send(logger.result);
   });
     
 });

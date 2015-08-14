@@ -14,7 +14,7 @@ mongodb.init(function(err) {
     throw err;
   }
 
-  mass_importer.import(winston, function(err) {
+  mass_importer.import(winston, config, function(err) {
     if(err) {
       winston.error(err);
       throw err;

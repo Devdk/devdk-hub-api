@@ -64,8 +64,8 @@ function meetupEventToMeeting(groupInformation, result) {
  * @param groupInformation a instance of a groupInformation object that contains the information needed for the group.
  * @param callback The callback. Will get a array of internal meeting objects.
  */
-module.exports.getMeetingsFromGroup = function(groupInformation, callback) {
-  api.getEvents(groupInformation.meetupUrl, function(err, data) {
+module.exports.getMeetingsFromGroup = function(groupInformation, meetupKey, callback) {
+  api.getEvents(groupInformation.meetupUrl, meetupKey, function(err, data) {
     if(err) {
       return callback(err);
     }
