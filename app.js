@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
+var git = require('git-rev');
 
 var routes = require('./routes/index');
 var meetings = require('./routes/meetings');
@@ -39,6 +40,13 @@ app.use('/meetings', meetings);
 app.use('/meetup_groups', meetup_groups);
 app.use('/logs', logs);
 app.use('/import', importRoute);
+
+app.get('/rev', function(req, res, next) {
+  
+  git.short(function (rev) {
+      res.send(rev);
+  });
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

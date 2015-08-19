@@ -34,7 +34,26 @@ function meetupEventToMeeting(groupInformation, result) {
       
       city = closest.name;
     } else {
-      city = groupInformation.city;
+      // Sometimes Meetup does not set the lat lon,
+      // so we will try to figure it out from the city of their venue.
+      if(venue.city == "Copenhagen") {
+        city = "København";
+      }
+      else if(venue.city == "Aarhus") {
+        city = "Aarhus";
+      }
+      else if(venue.city == "Esbjerg") {
+        city = "Esbjerg";
+      }
+      else if(venue.city == "Odense") {
+        city = "Odense";
+      }
+      else if(venue.city == "København") {
+        city = "København";
+      }
+      else {
+        city = groupInformation.city; 
+      }
     }
   }
   // END TODO
@@ -53,6 +72,7 @@ function meetupEventToMeeting(groupInformation, result) {
     source: {
       source_type: "meetup",
       source_id: result.id,
+      source_time: new Date(),
       data: result 
     }
   };
