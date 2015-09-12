@@ -13,7 +13,7 @@ var groupInformation = {
 describe('Meetup', function(){
   
 	it('should convert meetup meetings to hub formatted meetings', function(done){
-    meetup.getMeetingsFromGroup(groupInformation, function(err, meetings) {
+    meetup.getMeetingsFromGroup(groupInformation, "somekey", function(err, meetings) {
       assert.equal(meetings.length, 12);
       var meeting = meetings[0];
       
