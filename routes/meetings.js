@@ -111,7 +111,8 @@ function toPublicMeeting(m) {
         'url': m.url,
         'tags': m.tags,
         'organizers': m.organizers,
-        'city': m.city
+        'city': m.city,
+        'source': m.source
     }
 }
 
