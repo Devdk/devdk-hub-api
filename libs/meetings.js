@@ -86,28 +86,28 @@ var Meetings = {
   batchUpdateFromSource: function(meetings, callback) {
     var meetingsCollection = this._getMeetingsCollection();
     var inserted = 0, updated = 0;
+    var options = { upsert: true };
     var operations = meetings.map(function(meeting) {
       return function(cb) {
-          meetingsCollection.update(
-            { 
-             'source.source_type': meeting.source.source_type,
-             'source.source_id': meeting.source.source_id
-            },
-            meeting,
-            {
-             upsert: true
-            },
-            function(err, data) {
-            
-             if(data.result.nModified == 1) {
-               updated += 1;
-             } else {
-               inserted += 1;
-             }
-             
-             cb(err,data);
+        var query = { 
+          'source.source_type': meeting.source.source_type,
+          'source.source_id': meeting.source.source_id
+        }
+        meetingsCollection.update(
+          query,
+          meeting,
+          options,
+          function(err, data) {
+          
+            if(data.result.nModified == 1) {
+              updated += 1;
+            } else {
+              inserted += 1;
             }
-  	     );      
+            
+            cb(err,data);
+          }
+        );      
       };
     });
     
