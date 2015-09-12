@@ -6,6 +6,7 @@
     "start": "node ./bin/www",
     "postinstall": "gulp build",
     "test": "NODE_ENV=test mocha --reporter spec test/libs test/routes test/libs/meetup/",
+    "cover": "istanbul cover _mocha -- -R spec test/libs test/routes test/libs/meetup/ test/integration",
     "dev": "PORT=3001 nodemon",
     "massimport": "node ./bin/massimport"
   },

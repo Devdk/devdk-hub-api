@@ -12,25 +12,28 @@ var MassImporter = {
     
       logger.info("Connected to MongoDB");
       
-      meetup_groups.list(function(err, groupList) {
+      meetup_groups.list(function(err, groups) {
         
         if(err) {
           return callback(err);
         }
         
-        var operations = groupList.map(function(group) {
-          return MassImporter.importGroup.bind(null, logger, config, group); 
-        });
-      
-        async.series(operations, function(err) {
-          if(err) {
-            return callback(err);
-          }
-          
-          return callback(err);
-        });
-      
+        this.importGroups(logger, config, groups, callback);
+        
       });
+  },
+  importGroups: function(logger, config, groups, callback) {
+    var operations = groups.map(function(group) {
+      return MassImporter.importGroup.bind(null, logger, config, group); 
+    });
+  
+    async.series(operations, function(err) {
+      if(err) {
+        return callback(err);
+      }
+      
+      return callback(err);
+    });
   },
   importGroup: function(logger, config, group, callback) {
     logger.info("importing from " + group.meetupUrl);
