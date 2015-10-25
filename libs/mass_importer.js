@@ -20,7 +20,7 @@ var MassImporter = {
         
         this.importGroups(logger, config, groups, callback);
         
-      });
+      }.bind(this));
   },
   importGroups: function(logger, config, groups, callback) {
     var operations = groups.map(function(group) {
