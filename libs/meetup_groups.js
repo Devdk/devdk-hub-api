@@ -57,6 +57,9 @@ var MeetupGroups = {
     { meetupUrl: "Agile-Copenhagen", organizerName: "Agile Copenhagen", city: "København", tags: [ "agile" ] },
     { meetupUrl: "Professional-Scrum-with-Lean-Coffee", organizerName: "Professional Scrum with Lean Coffee", city: "København", tags: [ "agile" ] },
     { meetupUrl: "Copenhagen-Puppet-User-Group", organizerName: "Copenhagen Puppet User Group", city: "København", tags: [ "puppet" ] },
+    { meetupUrl: "Aarhus-Code-Nights", organizerName: "Aarhus Code Nights", city: "Aarhus", tags: [ "social", "code-night" ] },
+    { meetupUrl: "Arhus-DevOps-Meetup", organizerName: "Århus DevOps Meetup", city: "Aarhus", tags: [ "devops" ] },
+    { meetupUrl: "Arhus-Laravel-Meetup", organizerName: "Århus Laravel Meetup", city: "Aarhus", tags: [ "php", "laravel" ] },
   ]
 };
 
