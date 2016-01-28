@@ -60,6 +60,7 @@ var MeetupGroups = {
     { meetupUrl: "Aarhus-Code-Nights", organizerName: "Aarhus Code Nights", city: "Aarhus", tags: [ "social", "code-night" ] },
     { meetupUrl: "Arhus-DevOps-Meetup", organizerName: "Århus DevOps Meetup", city: "Aarhus", tags: [ "devops" ] },
     { meetupUrl: "Arhus-Laravel-Meetup", organizerName: "Århus Laravel Meetup", city: "Aarhus", tags: [ "php", "laravel" ] },
+    { meetupUrl: "CODE-Odense", organizerName: "CODE Odense", city: "Odense", tags: [ "workshops", "social" ] },
   ]
 };
 
