@@ -61,6 +61,10 @@ var MeetupGroups = {
     { meetupUrl: "Arhus-DevOps-Meetup", organizerName: "Århus DevOps Meetup", city: "Aarhus", tags: [ "devops" ] },
     { meetupUrl: "Arhus-Laravel-Meetup", organizerName: "Århus Laravel Meetup", city: "Aarhus", tags: [ "php", "laravel" ] },
     { meetupUrl: "CODE-Odense", organizerName: "CODE Odense", city: "Odense", tags: [ "workshops", "social" ] },
+    { meetupUrl: "Azure-Usergroup-Denmark-Aarhus", organizerName: "Azure Usergroup Aarhus", city: "Aarhus", tags: [ "azur" ] },
+    { meetupUrl: "aarhus-elixir", organizerName: "Aarhus Elixir Meetup", city: "Aarhus", tags: [ "elixir" ] },
+    { meetupUrl: "aarhusclj", organizerName: "aarhus.clj", city: "Aarhus", tags: [ "clojure" ] },
+    { meetupUrl: "Aarhus-ReactJS-Meetup", organizerName: "Aarhus ReactJS Meetup", city: "Aarhus", tags: [ "javascript", "react" ] },
   ]
 };
 
